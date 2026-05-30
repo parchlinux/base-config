@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = pacman-mirrorlist
+
+[Action]
+Description = Backup previous mirrorlist after mirrorlist package upgrade
+When = PreTransaction
+Exec = /usr/bin/sh -c 'test -f /etc/pacman.d/mirrorlist && cp -a /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak'

@@ -1,0 +1,21 @@
+{
+  "autosave": 60,
+  "clipboard": "terminal",
+  "colorscheme": "simple",
+  "cursorline": true,
+  "diffgutter": true,
+  "eofnewline": true,
+  "ignorecase": false,
+  "mkparents": true,
+  "paste": false,
+  "rmtrailingws": false,
+  "ruler": true,
+  "savecursor": true,
+  "saveundo": true,
+  "scrollmargin": 4,
+  "softwrap": true,
+  "statusline": true,
+  "tabmovement": true,
+  "tabsize": 4,
+  "tabstospaces": true
+}

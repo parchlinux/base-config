@@ -1,0 +1,5 @@
+--style=plain,changes,header
+--paging=auto
+--theme=TwoDark
+--italic-text=always
+--map-syntax *.conf:INI
