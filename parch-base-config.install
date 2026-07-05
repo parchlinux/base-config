@@ -1,0 +1,31 @@
+_deploy_conflict_files() {
+  local src="/usr/share/parch-base-config"
+  local files=(
+    'etc/inputrc'
+    'etc/skel/.bashrc'
+    'etc/skel/.zshrc'
+    'etc/nanorc'
+    'etc/vimrc'
+    'etc/wgetrc'
+    'etc/paru.conf'
+  )
+  for file in "${files[@]}"; do
+    if [[ -f "${src}/${file}" ]]; then
+      install -Dm644 "${src}/${file}" "${file}"
+    fi
+  done
+}
+
+post_install() {
+  _deploy_conflict_files
+  echo "==> parch-base-config has been installed."
+  echo "    New user skeleton files have been placed in /etc/skel."
+  echo "    Review /etc/profile.d/ for shell environment defaults."
+}
+
+post_upgrade() {
+  _deploy_conflict_files
+  echo "==> parch-base-config has been upgraded."
+  echo "    Modified config files have been saved with .pacnew or .pacsave."
+  echo "    Use 'diff' or 'pacdiff' to review changes."
+}
