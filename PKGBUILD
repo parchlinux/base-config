@@ -2,7 +2,7 @@
 
 pkgname=parch-base-config
 pkgver=0.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Base system configuration for Parch Linux"
 arch=('any')
 url="https://github.com/parchlinux/base-config"
