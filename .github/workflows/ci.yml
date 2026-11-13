@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: makepkg build test
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:base-devel
+    steps:
+      - name: Install git
+        run: pacman -Syu --noconfirm git
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build package
+        run: |
+          git config --global --add safe.directory "$PWD"
+          useradd builder -m
+          chown -R builder:builder "$PWD"
+          su builder -c "makepkg -f --noconfirm"
+
+      - name: Validate PKGBUILD fields
+        run: |
+          # pkgrel must be bumped whenever package content changes:
+          # if pkgrel is unchanged, pacman will not deliver fixes to users.
+          grep -qE '^pkgrel=[0-9]+' PKGBUILD || { echo "pkgrel missing"; exit 1; }
+          echo "PKGBUILD OK"
